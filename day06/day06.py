@@ -15,7 +15,6 @@ def simulate_population(init, s_time):
 
 if __name__=='__main__':
     with open("day06/input.txt") as f:
-        input_lst = list(map(int, list(map(str.strip, f.readlines()))[0].split(',')))
-    
+        input_lst = list(map(int, f.readlines()[0].split(',')))
     print("Pop. after 80 days: %d" % simulate_population(input_lst, 80))
     print("Pop. after 256 days: %d" % simulate_population(input_lst, 256))
