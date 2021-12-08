@@ -1,5 +1,12 @@
 from matplotlib import pyplot as plt
 
+def plot_cost(in_lst):
+    a = set(in_lst)
+    x = range(min(a), max(a) + 1)
+    y = [calc_cost_2(index, in_lst) for index in x]
+    plt.plot(x, y)
+    plt.show()
+
 def calc_cost(final_pos, horz_vector):
     return sum([abs(final_pos-pos) for pos in horz_vector])
 
@@ -10,23 +17,13 @@ def find_minimum(index, in_lst, min_fcn_version):
     current_cost = min_fcn_version(index, in_lst)
     next_index_cost = min_fcn_version(index + 1, in_lst)
     
-    dir = -1 if current_cost < next_index_cost else 1
+    search_dir = -1 if current_cost < next_index_cost else 1
     prev_cost = current_cost
     while prev_cost >= current_cost:
-        index += dir
+        index += search_dir
         prev_cost  = current_cost
         current_cost = min_fcn_version(index, in_lst)
-    return (index + dir, prev_cost)
-          
-def plot_cost(in_lst):
-    a = set(in_lst)
-    x = range(min(a), max(a) + 1)
-    y = [calc_cost_2(index, in_lst) for index in x]
-    plt.plot(x, y)
-    plt.show()
-
-    
-
+    return (index + search_dir, prev_cost)
 
 
 if __name__=='__main__':
