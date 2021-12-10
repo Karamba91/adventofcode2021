@@ -11,9 +11,6 @@ def find_problem(line, syntax_check=True):
             expected = expected_lst.pop()
             if sign != expected and syntax_check:
                 return sign
-            elif (sign != expected) and not syntax_check:
-                return []
-                #raise ValueError("Got %s expected %s" % (sign, expected))
     if syntax_check == False:
         expected_lst.reverse()
         return expected_lst
@@ -30,7 +27,7 @@ def autocomplete_score(code):
             score = (5 * score) + complete_score_dict[sign]
         scores += [score] if score > 0 else []
     scores.sort()
-    return scores
+    return scores[int(len(score)/2)]
 
 
 if __name__=='__main__':
@@ -38,4 +35,4 @@ if __name__=='__main__':
         input_lst = list(map(str.strip, f.readlines()))
     print("Syntax error score is %d" % syntax_error_score(input_lst))
     cmp_score = autocomplete_score(input_lst)
-    print("Autocomplete score is %d" % cmp_score[int(len(cmp_score)/2)])
+    print("Autocomplete score is %d" % cmp_score)
