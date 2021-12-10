@@ -27,12 +27,11 @@ def autocomplete_score(code):
             score = (5 * score) + complete_score_dict[sign]
         scores += [score] if score > 0 else []
     scores.sort()
-    return scores[int(len(score)/2)]
+    return scores[int(len(scores)/2)]
 
 
 if __name__=='__main__':
     with open("day10/input.txt") as f:
         input_lst = list(map(str.strip, f.readlines()))
     print("Syntax error score is %d" % syntax_error_score(input_lst))
-    cmp_score = autocomplete_score(input_lst)
-    print("Autocomplete score is %d" % cmp_score)
+    print("Autocomplete score is %d" % autocomplete_score(input_lst))
