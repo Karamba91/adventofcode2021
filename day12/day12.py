@@ -1,3 +1,4 @@
+from time import time
 def build_map(input_lst):
     cave_map = {}
     for connection in input_lst:
@@ -46,9 +47,18 @@ def build_path(input_lst, part=1):
 if __name__=='__main__':
     with open("day12/input.txt") as f:
         input_lst = list(map(str.strip, f.readlines()))
+    
     PART = 1
+    start = time()
     _, num_of_valid_paths = build_path(input_lst)
+    finish = time()
+    print("part 1: " + str(finish -start) + " seconds")
     print("Number of valid paths out of cave %d" % num_of_valid_paths)
+    
+    
     PART = 2
+    start = time()
     _, num_of_valid_paths = build_path(input_lst)
+    finish = time()
+    print("part 2:" + str(finish -start) + " seconds")
     print("Number of valid paths out of cave %d" % num_of_valid_paths)
