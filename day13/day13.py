@@ -23,9 +23,10 @@ def fold_all(sheet, instructions):
     return sheet
 
 def print_sheet(sheet):
-    max_x = 40
-    max_y = 10
-    print('\n'.join([''.join(['#' if (x,y) in sheet else '.' for x in range(max_x + 1)]) for y in range(max_y + 1)]))
+    max_x = max(sheet,key=lambda x: x[0])[0]
+    max_y = max(sheet,key=lambda x: x[1]) [1]
+    print('\n'.join([''.join(['#' if (x,y) in sheet else '.' for x in range(max_x + 1)]) 
+                    for y in range(max_y + 1)]))
 
 def create_sheet(input_lst):
     sheet = set()
