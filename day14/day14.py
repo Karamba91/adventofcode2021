@@ -1,10 +1,6 @@
 
 def create_smart_polymer(init, conversion, sim_step):
     conv_dict = create_conversion_dict(conversion)
-    last_pair = init[:2]
-    for _ in range(sim_step):
-        last_pair = conv_dict[last_pair][0]
-
     poly_pair = list(map(lambda x: x[0]+x[1],zip(init[:-1], init[1:])))
     poly_count = {k:0 for k in conv_dict.keys()}
     for i in set(poly_pair):
@@ -19,12 +15,16 @@ def create_smart_polymer(init, conversion, sim_step):
         poly_count = next_loop
     
     elem_counter = dict()
+    last_pair = init[:2]
+    for _ in range(sim_step):
+        last_pair = conv_dict[last_pair][0]
+    elem_counter[last_pair[0]] = 1
     for i in poly_count.keys():
         if i[-1] in elem_counter.keys():
             elem_counter[i[-1]] += poly_count[i]
         else:
             elem_counter[i[-1]] = poly_count[i]
-    elem_counter[last_pair[0]] +=1
+
     return elem_counter
 
 
